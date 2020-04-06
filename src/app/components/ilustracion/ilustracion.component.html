@@ -1,0 +1,43 @@
+<div class="container mt-3">
+    <h3 class="text-center">{{illustration.title}}</h3>
+    <hr>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" *ngFor="let image of illustration.images" [attr.data-slide-to]="image" [ngClass]="{'active': image === 0}"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item" *ngFor="let image of illustration.images" [ngClass]="{'active': image === 0}">
+                <img [src]="illustration.imageSuffix+image+illustration.imageExtention" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <!-- <p class="mt-3">{{illustration.description}}</p> -->
+    <blockquote class="blockquote">
+        <p class="mb-0">{{illustration.description}}</p>
+        <footer class="blockquote-footer mt-1">
+            {{illustration.collaborator.name}}
+
+            <a [href]="illustration.collaborator.instagram" class="text-reset" target="_blank">
+                <span class="fa-stack" style="vertical-align: top;">
+                    <i class="far fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-instagram fa-stack-1x"></i>
+                </span>
+            </a>
+
+            <a [href]="illustration.collaborator.behance" class="text-reset" target="_blank">
+                <span class="fa-stack" style="vertical-align: top;">
+                    <i class="far fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-behance fa-stack-1x"></i>
+                </span>
+            </a>
+        </footer>
+    </blockquote>
+</div>

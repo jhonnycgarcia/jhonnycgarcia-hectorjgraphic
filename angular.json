@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "hectorjgraphic"
+    }
+  },
+  "defaultProject": "hectorjgraphic",
+  "cli": {
+    "analytics": false
+  }
 }
