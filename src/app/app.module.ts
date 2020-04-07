@@ -16,6 +16,9 @@ import { IlustracionTarjetaComponent } from './components/ilustracion-tarjeta/il
 // Services
 import { IlustracionesService } from './services/ilustraciones.service';
 import { IlustracionComponent } from './components/ilustracion/ilustracion.component';
+import { AnimacionesComponent } from './components/animaciones/animaciones.component';
+import { TresdComponent } from './components/tresd/tresd.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { IlustracionComponent } from './components/ilustracion/ilustracion.compo
     FooterComponent,
     IlustracionesComponent,
     IlustracionTarjetaComponent,
-    IlustracionComponent
+    IlustracionComponent,
+    AnimacionesComponent,
+    TresdComponent,
+    ContactoComponent
   ],
   imports: [
     BrowserModule,
