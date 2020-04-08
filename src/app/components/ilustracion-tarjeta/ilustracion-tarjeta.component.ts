@@ -4,19 +4,18 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-ilustracion-tarjeta',
   templateUrl: './ilustracion-tarjeta.component.html',
-  styles: [
-  ],
+  styles: [],
 })
 export class IlustracionTarjetaComponent implements OnInit {
 
   @Input() illustration: any = {};
-  constructor( private _router: Router) { }
+  constructor( private router: Router) { }
 
   ngOnInit(): void {
   }
 
   showIllustrationDetails(): void{
-    this._router.navigate(['/ilustracion',this.illustration.id]);
+    this.router.navigate(['/ilustracion', this.illustration.id]);
   }
 
 }

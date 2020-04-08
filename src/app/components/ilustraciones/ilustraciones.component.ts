@@ -4,19 +4,19 @@ import { IlustracionesService, Illustration } from '../../services/ilustraciones
 @Component({
   selector: 'app-ilustraciones',
   templateUrl: './ilustraciones.component.html',
-  styles: [
-  ],
+  styleUrls: ['./ilustraciones.component.css']
 })
+
 export class IlustracionesComponent implements OnInit {
 
   illustrations: Illustration[];
 
   constructor(
-    private _service : IlustracionesService
+    private illustrationService: IlustracionesService
   ) { }
 
   ngOnInit(): void {
-    this.illustrations = this._service.getIllustrations();
+    this.illustrations = this.illustrationService.getIllustrations();
   }
 
 }
