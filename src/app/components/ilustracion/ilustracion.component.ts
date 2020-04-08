@@ -6,6 +6,7 @@ import { IlustracionesService, Illustration } from '../../services/ilustraciones
   selector: 'app-ilustracion',
   templateUrl: './ilustracion.component.html',
   styles: [
+    '.carousel .carousel-inner .carousel-item .img-fluid {max-height: 500px;}',
   ],
 })
 export class IlustracionComponent implements OnInit {
