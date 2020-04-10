@@ -4,15 +4,18 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-ilustracion-tarjeta',
   templateUrl: './ilustracion-tarjeta.component.html',
-  styles: [],
+  styleUrls: []
 })
+
 export class IlustracionTarjetaComponent implements OnInit {
 
   @Input() illustration: any = {};
-  constructor( private router: Router) { }
+  imageDefault = 'assets/img/system/screenWait.png';
+  showDefault = true;
 
-  ngOnInit(): void {
-  }
+  constructor( private router: Router) {}
+
+  ngOnInit(): void {}
 
   showIllustrationDetails(): void{
     this.router.navigate(['/ilustracion', this.illustration.id]);
