@@ -8,10 +8,10 @@ import { environment } from '../../../environments/environment';
   ],
 })
 export class InicioComponent implements OnInit {
-  author = environment.author;
+  author = environment.author;  // Almacenar autor
+  showInit = false; // Mostrar inicio
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }
