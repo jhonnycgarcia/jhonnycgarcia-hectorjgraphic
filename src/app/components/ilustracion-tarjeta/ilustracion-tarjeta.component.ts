@@ -10,10 +10,12 @@ import { Router } from '@angular/router';
 export class IlustracionTarjetaComponent implements OnInit {
 
   @Input() illustration: any = {};
+  showCard = false; // Mostrar tarjeta
   imageDefault = 'assets/img/system/screenWait.png';
-  showDefault = true;
-  showWait = true;
-  showErrorMessage = false;
+  showDefault = true; // Mostrar imagen por defecto
+  showWait = true;  // Mostrar icono de espera
+  showErrorMessage = false; // Mostrar mensaje de error
+  disableButton = true;  // Habilitar o Inhabilitar boton
 
   constructor( private router: Router) {}
 
@@ -26,6 +28,7 @@ export class IlustracionTarjetaComponent implements OnInit {
     setTimeout(() => {
       this.showWait = !this.showWait;
       this.showDefault = !this.showDefault;
+      this.disableButton = !this.disableButton;
     }, 1500);
   }
 
@@ -36,6 +39,7 @@ export class IlustracionTarjetaComponent implements OnInit {
     setTimeout(() => {
       this.showWait = !this.showWait;
       this.showErrorMessage = !this.showErrorMessage;
+      this.disableButton = !this.disableButton;
       console.log('Error on load image');
     }, 1500);
   }

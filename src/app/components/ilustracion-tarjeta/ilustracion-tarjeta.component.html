@@ -1,8 +1,8 @@
-<div class="card">
+<div class="card animated fadeIn fast" [hidden]="!showCard">
 
     <div class="d-flex flex-wrap align-items-center justify-content-center">
 
-        <img [src]="imageDefault" class="card-img-top" [alt]="illustration.title" *ngIf="showDefault">
+        <img [src]="imageDefault" class="card-img-top" [alt]="illustration.title" *ngIf="showDefault" (load)="showCard = !showCard">
 
         <span class="text-white position-absolute" *ngIf="showWait">
             <div class="spinner-grow text-light" role="status" style="width: 3rem; height: 3rem;"></div>
@@ -21,6 +21,6 @@
         <h5 class="card-title">{{illustration.title}}</h5>
         <hr>
         <p class="card-text">{{illustration.description}}.</p>
-        <button (click)="showIllustrationDetails();" type="button" class="btn btn-outline-primary btn-block ">Ver más...</button>
+        <button (click)="showIllustrationDetails();" type="button" class="btn btn-outline-primary btn-block" [ngClass]="{'stretched-link':!disableButton}" [disabled]="disableButton">Ver más...</button>
     </div>
 </div>
