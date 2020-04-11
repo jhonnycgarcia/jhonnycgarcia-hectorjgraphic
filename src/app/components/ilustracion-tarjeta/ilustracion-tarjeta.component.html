@@ -1,18 +1,26 @@
 <div class="card">
 
     <div class="d-flex flex-wrap align-items-center justify-content-center">
+
         <img [src]="imageDefault" class="card-img-top" [alt]="illustration.title" *ngIf="showDefault">
-        <span class="text-white position-absolute" *ngIf="showDefault">
+
+        <span class="text-white position-absolute" *ngIf="showWait">
             <div class="spinner-grow text-light" role="status" style="width: 3rem; height: 3rem;"></div>
         </span>
-        <img [src]="illustration.path+illustration.cover+illustration.imageExtention" class="card-img-top" [ngClass]="{'animated fadeIn': !showDefault}" [hidden]="showDefault" (load)="showDefault=!showDefault" [alt]="illustration.title">
+
+        <span class="text-white position-absolute text-center animated fadeIn" *ngIf="showErrorMessage">
+            <i class="fas fa-exclamation-triangle fa-2x"></i><br>
+            Not Found
+        </span>
+
+        <img [src]="illustration.path+illustration.cover+illustration.imageExtention" class="card-img-top" [ngClass]="{'animated fadeIn': !showDefault}" [hidden]="showDefault" (load)="showImage()" (error)="showErrorImage()" [alt]="illustration.title">
+        <!-- <img [src]="illustration.path+illustration.cover+illustration.imageExtention" class="card-img-top" [ngClass]="{'animated fadeIn': !showDefault}" [hidden]="showDefault" (load)="showDefault=!showDefault" [alt]="illustration.title"> -->
     </div>
 
-    <div class="card-body">
+    <div class="card-body text-center">
         <h5 class="card-title">{{illustration.title}}</h5>
         <hr>
-        <p class="card-text text-center">{{illustration.description}}.</p>
-        <!-- <p class="card-text text-center lead">{{illustration.description}}.</p> -->
+        <p class="card-text">{{illustration.description}}.</p>
         <button (click)="showIllustrationDetails();" type="button" class="btn btn-outline-primary btn-block ">Ver más...</button>
     </div>
 </div>
