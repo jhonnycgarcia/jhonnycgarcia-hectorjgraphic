@@ -19,6 +19,7 @@ import { IlustracionComponent } from './components/ilustracion/ilustracion.compo
 import { AnimacionesComponent } from './components/animaciones/animaciones.component';
 import { TresdComponent } from './components/tresd/tresd.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
+import { CarouselImageComponent } from './components/carousel-image/carousel-image.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ContactoComponent } from './components/contacto/contacto.component';
     IlustracionComponent,
     AnimacionesComponent,
     TresdComponent,
-    ContactoComponent
+    ContactoComponent,
+    CarouselImageComponent
   ],
   imports: [
     BrowserModule,
