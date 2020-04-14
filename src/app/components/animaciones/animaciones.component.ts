@@ -8,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnimacionesComponent implements OnInit {
 
+  sectionTitle = 'Animaciones';
+  sectionCategory = 'animation';
+  sectionRouter = 'animacion';
+
   constructor() { }
 
   ngOnInit(): void {
