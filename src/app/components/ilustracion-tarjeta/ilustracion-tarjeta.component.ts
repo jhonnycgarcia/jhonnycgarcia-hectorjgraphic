@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-ilustracion-tarjeta',
@@ -10,6 +9,8 @@ import { Router } from '@angular/router';
 export class IlustracionTarjetaComponent implements OnInit {
 
   @Input() illustration: any = {};
+  @Input() waitParent: boolean; // Variable del padre para el render de la espera
+
   showCard = false; // Mostrar tarjeta
   imageDefault = 'assets/img/system/screenWait.png';
   showDefault = true; // Mostrar imagen por defecto
@@ -17,14 +18,35 @@ export class IlustracionTarjetaComponent implements OnInit {
   showErrorMessage = false; // Mostrar mensaje de error
   disableButton = true;  // Habilitar o Inhabilitar boton
 
-  constructor( private router: Router) {}
+  @Output() illustrationDetails = new EventEmitter<string>();
+  @Output() waitParentEvent = new EventEmitter<boolean>();
+
+  constructor() {}
 
   ngOnInit(): void {}
+
+  /**
+   * Event Emitter para notificar al padre que ya se cargo el primer contenido
+   */
+  closeWaitParent(){
+    if (this.waitParent) {  // Si el padre aun esta esperando
+      this.waitParentEvent.emit(false);
+      this.waitParentEvent.unsubscribe();
+    }
+  }
+
+  /**
+   * Obtener cadena de string con la direccion de la imagen
+   */
+  getImageSrc(){
+    return this.illustration.path + this.illustration.cover + this.illustration.imageExtention;
+  }
 
   /**
    * Mostrar imagen al culminar su carga
    */
   showImage(){
+    this.closeWaitParent();
     setTimeout(() => {
       this.showWait = !this.showWait;
       this.showDefault = !this.showDefault;
@@ -36,6 +58,7 @@ export class IlustracionTarjetaComponent implements OnInit {
    * Mostrar mensage de Error al no cargar la imagen
    */
   showErrorImage(){
+    this.closeWaitParent();
     setTimeout(() => {
       this.showWait = !this.showWait;
       this.showErrorMessage = !this.showErrorMessage;
@@ -47,8 +70,8 @@ export class IlustracionTarjetaComponent implements OnInit {
   /**
    * Mostrar ficha detallada de la Ilustracion
    */
-  showIllustrationDetails(): void{
-    this.router.navigate(['/ilustracion', this.illustration.id]);
+  showDetails(): void{
+    this.illustrationDetails.emit(this.illustration.id);
   }
 
 }

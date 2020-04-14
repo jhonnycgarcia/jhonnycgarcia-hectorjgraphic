@@ -13,14 +13,13 @@
             Not Found
         </span>
 
-        <img [src]="illustration.path+illustration.cover+illustration.imageExtention" class="card-img-top" [ngClass]="{'animated fadeIn': !showDefault}" [hidden]="showDefault" (load)="showImage()" (error)="showErrorImage()" [alt]="illustration.title">
-        <!-- <img [src]="illustration.path+illustration.cover+illustration.imageExtention" class="card-img-top" [ngClass]="{'animated fadeIn': !showDefault}" [hidden]="showDefault" (load)="showDefault=!showDefault" [alt]="illustration.title"> -->
+        <img [src]="getImageSrc()" class="card-img-top" [ngClass]="{'animated fadeIn': !showDefault}" [hidden]="showDefault" (load)="showImage()" (error)="showErrorImage()" [alt]="illustration.title">
     </div>
 
     <div class="card-body text-center">
         <h5 class="card-title">{{illustration.title}}</h5>
         <hr>
         <p class="card-text">{{illustration.description}}.</p>
-        <button (click)="showIllustrationDetails();" type="button" class="btn btn-outline-primary btn-block" [ngClass]="{'stretched-link':!disableButton}" [disabled]="disableButton">Ver más...</button>
+        <button (click)="showDetails();" type="button" class="btn btn-outline-primary btn-block" [ngClass]="{'stretched-link':!disableButton}" [disabled]="disableButton">Ver más...</button>
     </div>
 </div>

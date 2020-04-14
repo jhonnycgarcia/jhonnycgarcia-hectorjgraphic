@@ -12,14 +12,14 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { IlustracionesComponent } from './components/ilustraciones/ilustraciones.component';
 import { IlustracionTarjetaComponent } from './components/ilustracion-tarjeta/ilustracion-tarjeta.component';
-
-// Services
-import { IlustracionesService } from './services/ilustraciones.service';
 import { IlustracionComponent } from './components/ilustracion/ilustracion.component';
 import { AnimacionesComponent } from './components/animaciones/animaciones.component';
 import { TresdComponent } from './components/tresd/tresd.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { CarouselImageComponent } from './components/carousel-image/carousel-image.component';
+
+// Services
+import { ProjectsService } from './services/projects.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,7 @@ import { CarouselImageComponent } from './components/carousel-image/carousel-ima
     AppRoutingModule
   ],
   providers: [
-    IlustracionesService
+    ProjectsService
   ],
   bootstrap: [AppComponent]
 })

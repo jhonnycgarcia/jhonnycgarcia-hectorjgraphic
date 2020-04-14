@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IlustracionesService, Illustration } from '../../services/ilustraciones.service';
+import { ProjectsService, Project } from '../../services/projects.service';
 
 @Component({
   selector: 'app-ilustracion',
@@ -11,19 +11,18 @@ import { IlustracionesService, Illustration } from '../../services/ilustraciones
 })
 export class IlustracionComponent implements OnInit {
 
-  illustration: Illustration;
+  illustration: Project;
   imageDefault = 'assets/img/system/screenWait.png';
   maxHeight = '500px';  // Max-height del CSS
 
   constructor(
     private activeRoute: ActivatedRoute,
-    private service: IlustracionesService
+    private service: ProjectsService
   ) {
     this.activeRoute.params.subscribe((params) => {
-      this.illustration = this.service.getIllustrationById(params.id);
+      this.illustration = this.service.getProjectById(params.id);
     });
   }
-
 
   ngOnInit(): void {
   }
