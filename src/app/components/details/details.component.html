@@ -1,0 +1,64 @@
+<div class="container mt-3">
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status" *ngIf="waitData"></div>
+        <div class="text-center animated fadeIn" *ngIf="notFoundData"><i class="fas fa-exclamation-triangle fa-2x"></i><br>No se consiguio ningun proyecto con el identificador seleccionado, favor intente nuevamente</div>
+        <div class="text-center animated fadeIn" *ngIf="errorData">Error!</div>
+    </div>
+
+    <div *ngIf="item">
+        <h3 class="text-center">{{item.title}}</h3>
+        <hr>
+
+        <div class="container-fluid rounded" style="background-color: dimgray;">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+                <!-- Listado de link para imagenes -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" *ngFor="let image of item.images; let i = index" [attr.data-slide-to]="i" [ngClass]="{'active': i === 0}"></li>
+                </ol>
+
+                <!-- Listado de imagenes -->
+                <div class="carousel-inner">
+                    <div class="carousel-item" *ngFor="let image of item.images; let i = index" [ngClass]="{'active': i === 0}">
+                        <app-carousel-image [image]="image" [title]="item.title" [imageSrc]="item.path+item.imageSuffix+image+item.imageExtention" [maxHeight]="maxHeight"></app-carousel-image>
+                    </div>
+                </div>
+
+                <!-- Pestañas de navegacion -->
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+
+            </div>
+        </div>
+        <hr>
+        <blockquote class="blockquote mt2">
+            <!-- Descripcion -->
+            <p class="mb-0">{{item.description}}</p>
+
+            <!-- Colaborador -->
+            <footer class="blockquote-footer mt-1" *ngIf="item.collaborator.name">
+                {{item.collaborator.name}}
+
+                <a [href]="item.collaborator.instagram" class="text-reset" target="_blank">
+                    <span class="fa-stack" style="vertical-align: top;">
+                    <i class="far fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-instagram fa-stack-1x"></i>
+                </span>
+                </a>
+
+                <a [href]="item.collaborator.behance" class="text-reset" target="_blank">
+                    <span class="fa-stack" style="vertical-align: top;">
+                    <i class="far fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-behance fa-stack-1x"></i>
+                </span>
+                </a>
+            </footer>
+        </blockquote>
+    </div>
+</div>

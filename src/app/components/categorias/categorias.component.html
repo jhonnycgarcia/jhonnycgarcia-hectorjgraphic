@@ -1,0 +1,13 @@
+<div class="mt-3 text-center">
+    <h1 class="text-center">{{sectionTitle}}</h1>
+    <hr>
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status" *ngIf="waitData"></div>
+        <div class="text-center animated fadeIn" *ngIf="notFoundData"><i class="fas fa-exclamation-triangle fa-2x"></i><br>No se encontraron imagenes</div>
+        <div class="text-center animated fadeIn" *ngIf="errorData">Error!</div>
+    </div>
+
+    <div class="card-columns animated fadeIn">
+        <app-tarjetas [waitParent]="waitData" [item]="item" *ngFor="let item of dataCategory" (waitParentEvent)="waitEvent($event)" (itemDetails)="showDetails($event)"></app-tarjetas>
+    </div>
+</div>

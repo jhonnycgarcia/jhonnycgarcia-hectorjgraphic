@@ -8,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TresdComponent implements OnInit {
 
+  sectionTitle = '3D';
+  sectionCategory = '3D';
+  sectionRouter = 'tresd';
+
   constructor() { }
 
   ngOnInit(): void {
