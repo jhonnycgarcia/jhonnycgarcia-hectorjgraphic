@@ -5,7 +5,7 @@
         <div class="text-center animated fadeIn" *ngIf="errorData">Error!</div>
     </div>
 
-    <div *ngIf="item">
+    <div [hidden]="waitData" [ngClass]="{'animated fadeIn': !waitData}">
         <h3 class="text-center">{{item.title}}</h3>
         <hr>
 
@@ -20,7 +20,7 @@
                 <!-- Listado de imagenes -->
                 <div class="carousel-inner">
                     <div class="carousel-item" *ngFor="let image of item.images; let i = index" [ngClass]="{'active': i === 0}">
-                        <app-carousel-image [image]="image" [title]="item.title" [imageSrc]="item.path+item.imageSuffix+image+item.imageExtention" [maxHeight]="maxHeight"></app-carousel-image>
+                        <app-carousel-image [image]="image" [title]="item.title" [imageSrc]="item.path+item.imageSuffix+image+item.imageExtention" [maxHeight]="maxHeight" [waitParent]="waitData" (waitLoaded)="imgDefaultLoaded()"></app-carousel-image>
                     </div>
                 </div>
 

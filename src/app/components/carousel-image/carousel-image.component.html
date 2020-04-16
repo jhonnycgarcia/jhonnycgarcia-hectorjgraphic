@@ -4,7 +4,7 @@
                             <div class="spinner-grow text-light" role="status" style="width: 3rem; height: 3rem;"></div>
                         </span>
 
-    <img [src]="imageDefault" class="img-fluid d-block mx-auto my-auto" *ngIf="showDefault" alt="...">
+    <img [src]="imageDefault" class="img-fluid d-block mx-auto my-auto" (load)="stopWait()" *ngIf="showDefault" alt="...">
 
     <span class="text-white position-absolute text-center animated fadeIn" *ngIf="error">
                             <i class="fas fa-exclamation-triangle fa-2x"></i><br>

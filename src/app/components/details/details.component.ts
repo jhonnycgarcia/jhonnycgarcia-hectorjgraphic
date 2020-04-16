@@ -14,9 +14,9 @@ export class DetailsComponent implements OnInit {
 
   item: Project;
 
-  waitData = true;
-  notFoundData = false;
-  errorData = false;
+  waitData = true;  // Loop de espera
+  notFoundData = false; // Mensaje de NotFound
+  errorData = false;  // Mensaje de error
 
   maxHeight = '500px';  // Max-height del CSS
 
@@ -31,6 +31,18 @@ export class DetailsComponent implements OnInit {
     });
   }
 
+  /**
+   * Evento para detectar, desde el componente hijo,
+   * que ya se cargo la imagen por defecto
+   */
+  imgDefaultLoaded(): void{
+    this.waitData = false;
+  }
+
+  /**
+   * Metodo para obtener detalles del registro a traves del ID
+   * @param id<string> Identificador del registro
+   */
   getDetails(id: string): void{
     const data: Project = this.service.getProjectById(id);
     if (!data) {
@@ -38,7 +50,6 @@ export class DetailsComponent implements OnInit {
       this.notFoundData = true;
     }else{
       this.item = data;
-      this.waitData = false;
     }
   }
 
