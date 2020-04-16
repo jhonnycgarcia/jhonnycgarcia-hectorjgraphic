@@ -13,7 +13,7 @@ export class CarouselImageComponent implements OnInit {
   @Input() title: string; // Titulo del proyecto
   @Input() imageSrc: string;  // Path de la imagen
   @Input() maxHeight: string; // MaxHeight definido para el CSS
-  imageDefault = 'assets/img/system/screenWait.png';
+  imageDefault = 'assets/img/system/screenWaitcarousel.png';
   showDefault = true;
   wait = true;
   error = false;
