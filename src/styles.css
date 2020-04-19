@@ -29,3 +29,69 @@
 .fadeIn {
     animation-name: fadeIn;
 }
+
+
+/* Estilo para el loop del isotopo girando y parpadeando */
+
+.iso-animation {
+    -webkit-animation: iso-animation 1.5s linear infinite;
+    -moz-animation: iso-animation 1.5s linear infinite;
+    -o-animation: iso-animation 1.5s linear infinite;
+    animation: iso-animation 1.5s linear infinite;
+}
+
+@keyframes iso-animation {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@-o-keyframes iso-animation {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes iso-animation {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes iso-animation {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(360deg);
+        opacity: 0;
+    }
+}

@@ -4,8 +4,7 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
-  styles: [
-  ],
+  styleUrls: []
 })
 export class InicioComponent implements OnInit {
   author = environment.author;  // Almacenar autor
