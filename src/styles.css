@@ -95,3 +95,78 @@
         opacity: 0;
     }
 }
+
+
+/* Estilo para el loop del isotopo tipo Ripple */
+
+.iso-animation-ripple {
+    -webkit-animation: iso-animation-ripple 1s linear infinite;
+    -moz-animation: iso-animation-ripple 1s linear infinite;
+    -o-animation: iso-animation-ripple 1s linear infinite;
+    animation: iso-animation-ripple 1s linear infinite;
+    animation-delay: -0.5s;
+}
+
+@keyframes iso-animation-ripple {
+    0% {
+        opacity: 0;
+        width: 0%;
+        height: 0%;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@-o-keyframes iso-animation-ripple {
+    0% {
+        opacity: 0;
+        width: 0%;
+        height: 0%;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@-moz-keyframes iso-animation-ripple {
+    0% {
+        opacity: 0;
+        width: 0%;
+        height: 0%;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@-webkit-keyframes iso-animation-ripple {
+    0% {
+        opacity: 0;
+        width: 0%;
+        height: 0%;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+    }
+}

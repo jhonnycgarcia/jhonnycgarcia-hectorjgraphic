@@ -4,7 +4,7 @@
         <img [src]="imageDefault" class="card-img-top" [alt]="item.title" *ngIf="showDefault" (load)="defaultLoadCompleted()">
 
         <span class="text-white position-absolute" *ngIf="showWait">
-            <div class="spinner-grow text-light" role="status" style="width: 3rem; height: 3rem;"></div>
+            <img class="iso-animation-ripple" src="assets/img/system/isotopoLoopCard.png" alt="Loading..." role="status">
         </span>
 
         <span class="text-white position-absolute text-center animated fadeIn" *ngIf="showErrorMessage">

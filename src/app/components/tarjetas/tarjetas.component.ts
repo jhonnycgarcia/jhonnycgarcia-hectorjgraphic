@@ -4,8 +4,7 @@ import { Project } from '../../services/projects.service';
 @Component({
   selector: 'app-tarjetas',
   templateUrl: './tarjetas.component.html',
-  styles: [
-  ],
+  styleUrls: [],
 })
 export class TarjetasComponent implements OnInit {
   @Input() waitParent: boolean;
