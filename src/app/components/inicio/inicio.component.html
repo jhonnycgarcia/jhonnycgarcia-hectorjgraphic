@@ -2,11 +2,11 @@
     <img class="iso-animation" src="assets/img/system/isotopoLoopT.png" alt="Loading..." role="status">
 </div>
 
-<div class="row justify-content-center row-cols-1 mt-5 pt-5 animated fadeIn" [hidden]="!showInit">
+<div class="row justify-content-center row-cols-1 pt-5 animated fadeIn" [hidden]="!showInit">
     <div class="col">
-        <img class="img-fluid mx-auto d-block" style=" min-width: 100px; max-width: 110px;" src="assets/img/system/identidad.png" [alt]="author" (load)="showInit = !showInit">
+        <img class="img-fluid mx-auto d-block" src="assets/img/system/identidad.png" [alt]="author" (load)="showInit = !showInit">
     </div>
-    <div class="col text-center">
+    <div class="col text-center d-none">
         <h1 class="font-weight-bolder">{{author}}</h1>
         <h4>Diseñador Gráfico</h4>
     </div>
