@@ -29,10 +29,21 @@ export class CategoriasComponent implements OnInit {
     this.getDataCategory();
   }
 
+  getDataCategory(){
+    this.service.getProjects(this.sectionCategory).subscribe(docs => {
+      if (docs.length === 0) {
+        this.waitData = false;
+        this.notFoundData = true;
+      }else{
+        this.dataCategory = docs;
+      }
+    });
+  }
+
   /**
    * Funcion para obtener los projectos y validar si se encuentran las mismas
    */
-  getDataCategory(): void{
+/*   getDataCategory1(): void{
     const data: Array<Project> = this.service.getProjects(this.sectionCategory);
     if (data.length === 0) {
       this.waitData = false;
@@ -40,7 +51,7 @@ export class CategoriasComponent implements OnInit {
     } else {
       this.dataCategory = data;
     }
-  }
+  } */
 
  /**
   * Evento para detectar si se cargo el primer elemento de las tarjetas

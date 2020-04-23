@@ -44,13 +44,14 @@ export class DetailsComponent implements OnInit {
    * @param id<string> Identificador del registro
    */
   getDetails(id: string): void{
-    const data: Project = this.service.getProjectById(id);
-    if (!data) {
-      this.waitData = false;
-      this.notFoundData = true;
-    }else{
-      this.item = data;
-    }
+    this.service.getProjectById(id).subscribe(doc => {
+      if (!doc) {
+        this.waitData = false;
+        this.notFoundData = true;
+      } else {
+        this.item = doc;
+      }
+    });
   }
 
 }
