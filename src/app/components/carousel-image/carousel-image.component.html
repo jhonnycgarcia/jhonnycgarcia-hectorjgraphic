@@ -8,8 +8,8 @@
 
     <span class="text-white position-absolute text-center animated fadeIn" *ngIf="error">
                             <i class="fas fa-exclamation-triangle fa-2x"></i><br>
-                            Not Found
+                            {{errorMessage}}
                         </span>
 </div>
 
-<img [src]="imageSrc" [id]="title+image" class="img-fluid mx-auto my-auto d-none" [ngClass]="{'d-block animated fadeIn': !showDefault}" [alt]="title+image" (load)="showImage()" (error)="showError()">
+<img [src]="imageWebPath" *ngIf="imageWebPath" [id]="title+image" class="img-fluid mx-auto my-auto d-none" [ngClass]="{'d-block animated fadeIn': !showDefault}" [alt]="title+image" (load)="showImage()" (error)="showError()">

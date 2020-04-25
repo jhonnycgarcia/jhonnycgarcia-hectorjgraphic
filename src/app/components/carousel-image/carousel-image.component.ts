@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ProjectsService } from '../../services/projects.service';
 
 @Component({
   selector: 'app-carousel-image',
@@ -16,13 +17,27 @@ export class CarouselImageComponent implements OnInit {
   @Input() waitParent: boolean; // Variable del padre que indica si se encuentra esperando
   @Output() waitLoaded = new EventEmitter(); // Evento par indicarle al padre que ya se cargo un elemento
   imageDefault = 'assets/img/system/screenWaitcarousel.png';  // Imagen por defecto
+  imageWebPath: string; // Url WEB de la imagen
   showDefault = true; // Mostrar imagen por defecto
   wait = true;  // Loop de espera
   error = false;  // Mostrar mensaje de error
+  errorMessage = 'Not found!'; // Mensaje de error
 
-  constructor() { }
+  constructor(
+    private service: ProjectsService
+  ) { }
 
   ngOnInit(): void {
+    this.service.getImgUrlToFirebase(this.imageSrc)
+    .subscribe(
+      (url) => this.imageWebPath = url, // Asignar direccion correcta
+      (err) => {  // Capturar error
+        if (err.code === 'storage/retry-limit-exceeded') {
+          this.errorMessage = 'Try to reload the page';
+        }
+        this.showError(); // Mostrar mensaje de error
+      }
+    );
   }
 
   /**
