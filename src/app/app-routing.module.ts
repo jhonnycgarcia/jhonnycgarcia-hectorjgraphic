@@ -8,6 +8,7 @@ import { AnimacionesComponent } from './components/animaciones/animaciones.compo
 import { TresdComponent } from './components/tresd/tresd.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { DetailsComponent } from './components/details/details.component';
+import { BrandingComponent } from './components/branding/branding.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'ilustraciones', component: IlustracionesComponent},
   { path: 'ilustracion/:id', component: DetailsComponent},
   {path: 'animaciones', component: AnimacionesComponent},
+  {path: 'branding', component: BrandingComponent},
   {path: 'tresd', component: TresdComponent},
   {path: 'tresd/:id', component: DetailsComponent},
   {path: 'contacto', component: ContactoComponent},

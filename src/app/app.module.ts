@@ -25,6 +25,7 @@ import { CarouselImageComponent } from './components/carousel-image/carousel-ima
 import { CategoriasComponent } from './components/categorias/categorias.component';
 import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
 import { DetailsComponent } from './components/details/details.component';
+import { BrandingComponent } from './components/branding/branding.component';
 
 // Services
 import { ProjectsService } from './services/projects.service';
@@ -42,7 +43,8 @@ import { ProjectsService } from './services/projects.service';
     CarouselImageComponent,
     CategoriasComponent,
     TarjetasComponent,
-    DetailsComponent
+    DetailsComponent,
+    BrandingComponent
   ],
   imports: [
     BrowserModule,
