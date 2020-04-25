@@ -1,8 +1,5 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
-import { Project } from '../../services/projects.service';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { Observable, Subscription, of } from 'rxjs';
-import { take, catchError} from 'rxjs/operators';
+import { Project, ProjectsService } from '../../services/projects.service';
 
 @Component({
   selector: 'app-tarjetas',
@@ -23,13 +20,10 @@ export class TarjetasComponent implements OnInit, OnDestroy {
   showErrorMessage = false; // Mostrar mensaje de error
   errorMessage = 'Not Found'; // Mensaje de error
   disableButton = true;  // Habilitar o Inhabilitar boton
-
   imageUrlPath: string; // Link de la imagen a traves de Firebase
-  imageAfsUrl: Observable<string>;  // Evento al cual subcribirse para obtener el link
-  subscription: Subscription; // Subscripcion al evento de firebase para obtener URL de la imagen
 
   constructor(
-    private storage: AngularFireStorage
+    private service: ProjectsService
   ) { }
 
   ngOnInit(): void {
@@ -50,7 +44,7 @@ export class TarjetasComponent implements OnInit, OnDestroy {
   /**
    * Event Emitter para notificar al padre que ya se cargo el primer contenido
    */
-  closeWaitParent() {
+  closeWaitParent(): void {
     if (this.waitParent) {  // Si el padre aun esta esperando
       this.waitParentEvent.emit(false);
     }
@@ -59,33 +53,18 @@ export class TarjetasComponent implements OnInit, OnDestroy {
  /**
   * Obtener cadena de string con la direccion de la imagen
   */
-  getImageSrc() {
+  getImageSrc(): void {
     const path = this.item.path + this.item.imageSuffix + '/' + this.item.cover + this.item.imageExtention;
-    const ref = this.storage.ref(path);
-    this.imageAfsUrl = ref.getDownloadURL();
-
-    this.subscription = this.imageAfsUrl
-      .pipe(
-        catchError((err) => { // Capturar error
-          switch (err.code) {
-            case 'storage/retry-limit-exceeded':  // Excede limite de espera
-              console.error(`(${this.item.cover})`, err.message_);
-              this.errorMessage = 'Try to reload the page';
-              break;
-            case 'storage/object-not-found':  // No se encontro el objeto
-              console.error(`(${this.item.cover})`, err.message_);
-              break;
-          }
-          return of(null);  // Retornar vacio
-        }),
-        take(1))  // Tomar una sola peticion
-      .subscribe((data) => {
-        if (!data) {  // No se consigieron datos
-          this.showErrorImage();  // Mostrar mensaje de error
-        }else{  // Obtiene respuesta
-          this.imageUrlPath = data; // Asignar URL del cover a la imagen
+    this.service.getImgUrlToFirebase(path)
+    .subscribe(
+      (url) => this.imageUrlPath = url // Asignar URL del cover a la imagen
+      , (err) => {
+        if (err.code === 'storage/retry-limit-exceeded') {
+          this.errorMessage = 'Try to reload the page';
         }
-      });
+        this.showErrorImage();  // Mostrar mensaje de error
+      }
+    );
   }
 
   /**
@@ -110,7 +89,5 @@ export class TarjetasComponent implements OnInit, OnDestroy {
     this.disableButton = false;
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();  // Dejar de escuchar evento de firebase
-  }
+  ngOnDestroy() { }
 }
