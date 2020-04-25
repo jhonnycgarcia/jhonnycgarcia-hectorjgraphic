@@ -9,10 +9,11 @@
 
         <span class="text-white position-absolute text-center animated fadeIn" *ngIf="showErrorMessage">
             <i class="fas fa-exclamation-triangle fa-2x"></i><br>
-            Not Found
+            {{errorMessage}}
         </span>
 
-        <img [src]="getImageSrc()" class="card-img-top" [ngClass]="{'animated fadeIn': !showDefault}" [hidden]="showDefault" (load)="showImage()" (error)="showErrorImage()" [alt]="item.title">
+        <img [src]="imageUrlPath" *ngIf="imageUrlPath" class="card-img-top" [ngClass]="{'animated fadeIn': !showDefault}" [hidden]="showDefault" (load)="showImage()" [alt]="item.title">
+        <!-- <img [src]="getImageSrc() | async" class="card-img-top" [ngClass]="{'animated fadeIn': !showDefault}" [hidden]="showDefault" (load)="showImage()" (error)="showErrorImage()" [alt]="item.title"> -->
     </div>
 
     <div class="card-body text-center">

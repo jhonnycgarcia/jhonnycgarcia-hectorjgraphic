@@ -28,7 +28,9 @@ export class CategoriasComponent implements OnInit {
   ngOnInit(): void {
     this.getDataCategory();
   }
-
+  /**
+   * Funcion para obtener los projectos y validar si se encuentran las mismas
+   */
   getDataCategory(){
     this.service.getProjects(this.sectionCategory).subscribe(docs => {
       if (docs.length === 0) {
@@ -39,19 +41,6 @@ export class CategoriasComponent implements OnInit {
       }
     });
   }
-
-  /**
-   * Funcion para obtener los projectos y validar si se encuentran las mismas
-   */
-/*   getDataCategory1(): void{
-    const data: Array<Project> = this.service.getProjects(this.sectionCategory);
-    if (data.length === 0) {
-      this.waitData = false;
-      this.notFoundData = true;
-    } else {
-      this.dataCategory = data;
-    }
-  } */
 
  /**
   * Evento para detectar si se cargo el primer elemento de las tarjetas
@@ -73,7 +62,7 @@ export class CategoriasComponent implements OnInit {
     if (this.sectionRouter.length > 0) {
       this.router.navigate(['/' + this.sectionRouter, id]);
     }else{
-      console.log('Error400: sectionRouter is not defined!');
+      console.error('Error400: sectionRouter is not defined!');
     }
   }
 
