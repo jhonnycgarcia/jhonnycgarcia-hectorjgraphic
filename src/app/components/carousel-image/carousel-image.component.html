@@ -12,4 +12,5 @@
                         </span>
 </div>
 
-<img [src]="imageWebPath" *ngIf="imageWebPath" [id]="title+image" class="img-fluid mx-auto my-auto d-none" [ngClass]="{'d-block animated fadeIn': !showDefault}" [alt]="title+image" (load)="showImage()" (error)="showError()">
+<img [src]="imageWebPath" *ngIf="imageWebPath" class="img-fluid mx-auto my-auto d-none" [ngClass]="{'d-block animated fadeIn': !showDefault}" (load)="showImage()" (error)="showError()" [alt]="image.title">
+<!-- <img [src]="imageWebPath" *ngIf="imageWebPath" [id]="title+image" class="img-fluid mx-auto my-auto d-none" [ngClass]="{'d-block animated fadeIn': !showDefault}" [alt]="title+image" (load)="showImage()" (error)="showError()"> -->

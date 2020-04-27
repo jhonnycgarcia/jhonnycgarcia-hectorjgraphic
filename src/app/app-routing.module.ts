@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'ilustracion/:id', component: DetailsComponent},
   {path: 'animaciones', component: AnimacionesComponent},
   {path: 'branding', component: BrandingComponent},
+  { path: 'branding/:id', component: DetailsComponent},
   {path: 'tresd', component: TresdComponent},
   {path: 'tresd/:id', component: DetailsComponent},
   {path: 'contacto', component: ContactoComponent},

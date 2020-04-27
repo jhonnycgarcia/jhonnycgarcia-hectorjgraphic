@@ -11,7 +11,7 @@
             <hr>
 
             <div class="container-fluid rounded" style="background-color: dimgray;">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide animated fadeIn" data-ride="carousel">
 
                     <!-- Listado de link para imagenes -->
                     <ol class="carousel-indicators">
@@ -21,7 +21,8 @@
                     <!-- Listado de imagenes -->
                     <div class="carousel-inner">
                         <div class="carousel-item" *ngFor="let image of item.images; let i = index" [ngClass]="{'active': i === 0}">
-                            <app-carousel-image [image]="image" [title]="item.title" [imageSrc]="getImagePath(image)" [maxHeight]="maxHeight" [waitParent]="waitData" (waitLoaded)="imgDefaultLoaded()"></app-carousel-image>
+                            <app-carousel-image [waitParent]="waitData" (waitLoaded)="imgDefaultLoaded()" [detailParentData]="item" [image]="image" [maxHeight]="maxHeight"></app-carousel-image>
+                            <!-- <app-carousel-image [image]="image" [title]="item.title" [imageSrc]="getImagePath(image)" [maxHeight]="maxHeight" [waitParent]="waitData" (waitLoaded)="imgDefaultLoaded()"></app-carousel-image> -->
                         </div>
                     </div>
 
@@ -42,24 +43,28 @@
                 <!-- Descripcion -->
                 <p class="mb-0 text-justify">{{item.description}}</p>
 
-                <!-- Colaborador -->
-                <footer class="blockquote-footer mt-1" *ngIf="item.collaborator.name">
-                    {{item.collaborator.name}}
+                <!-- Colaboradorres -->
 
-                    <a [href]="item.collaborator.instagram" class="text-reset" target="_blank">
-                        <span class="fa-stack" style="vertical-align: top;">
-                        <i class="far fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-instagram fa-stack-1x"></i>
-                    </span>
-                    </a>
+                <div *ngIf="item.collaborators.length > 0">
+                    <!-- Si existen colaboradores -->
+                    <footer class="blockquote-footer mt-1" *ngFor="let collaborator of item.collaborators">
+                        {{collaborator.name}}
 
-                    <a [href]="item.collaborator.behance" class="text-reset" target="_blank">
-                        <span class="fa-stack" style="vertical-align: top;">
-                        <i class="far fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-behance fa-stack-1x"></i>
-                    </span>
-                    </a>
-                </footer>
+                        <a [href]="collaborator.instagram" class="text-reset" target="_blank">
+                            <span class="fa-stack" style="vertical-align: top;">
+                        	        <i class="far fa-circle fa-stack-2x"></i>
+                        	        <i class="fab fa-instagram fa-stack-1x"></i>
+                        	    </span>
+                        </a>
+
+                        <a [href]="collaborator.behance" class="text-reset" target="_blank">
+                            <span class="fa-stack" style="vertical-align: top;">
+                        	        <i class="far fa-circle fa-stack-2x"></i>
+                        	        <i class="fab fa-behance fa-stack-1x"></i>
+                        	    </span>
+                        </a>
+                    </footer>
+                </div>
             </blockquote>
         </div>
     </div>

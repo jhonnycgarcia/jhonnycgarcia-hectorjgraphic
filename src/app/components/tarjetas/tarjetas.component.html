@@ -12,7 +12,7 @@
             {{errorMessage}}
         </span>
 
-        <img [src]="imageUrlPath" *ngIf="imageUrlPath" class="card-img-top" [ngClass]="{'animated fadeIn': !showDefault}" [hidden]="showDefault" (load)="showImage()" [alt]="item.title">
+        <img [src]="imageUrlPath" *ngIf="imageUrlPath" class="card-img-top" [ngClass]="{'animated fadeIn': !showDefault}" [hidden]="showDefault" (load)="showImage()" (error)="showErrorImage()" [alt]="item.title">
         <!-- <img [src]="getImageSrc() | async" class="card-img-top" [ngClass]="{'animated fadeIn': !showDefault}" [hidden]="showDefault" (load)="showImage()" (error)="showErrorImage()" [alt]="item.title"> -->
     </div>
 
@@ -20,6 +20,7 @@
         <h5 class="card-title">{{item.title}}</h5>
         <hr>
         <p class="card-text">{{item.description}}</p>
-        <button (click)="showDetails();" type="button" class="btn btn-outline-primary btn-block" [ngClass]="{'stretched-link':!disableButton}" [disabled]="disableButton">Ver más...</button>
+        <!-- Mostrar boton si posee galeria de imagenes -->
+        <button *ngIf="item.images.length > 0" (click)="showDetails();" type="button" class="btn btn-outline-primary btn-block" [ngClass]="{'stretched-link':!disableButton}" [disabled]="disableButton">Ver más...</button>
     </div>
 </div>

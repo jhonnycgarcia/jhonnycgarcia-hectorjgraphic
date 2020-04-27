@@ -40,24 +40,16 @@ export class DetailsComponent implements OnInit {
   }
 
   /**
-   * Funcion para obtener el path ordenado para las imagenes del carousel
-   * @param index number Posicion de la imagen dentro del arreglo de imagenes
-   */
-  getImagePath(index: number): string{
-    return this.item.path + this.item.imageSuffix + '/' + this.item.imageSuffix + index + this.item.imageExtention
-  }
-
-  /**
    * Metodo para obtener detalles del registro a traves del ID
    * @param id<string> Identificador del registro
    */
   getDetails(id: string): void{
-    this.service.getProjectById(id).subscribe(doc => {
-      if (!doc) {
+    this.service.getProjectById(id).subscribe(docs => {
+      if (!docs) {
         this.waitData = false;
         this.notFoundData = true;
       } else {
-        this.item = doc;
+        this.item = docs;
       }
     });
   }

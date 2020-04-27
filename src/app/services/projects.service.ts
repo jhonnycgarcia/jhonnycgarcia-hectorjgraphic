@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { map, catchError, take, retry } from 'rxjs/operators';
 
 @Injectable({
@@ -64,28 +64,59 @@ export class ProjectsService {
       );
     return ref;
   }
+
+  /**
+   * Funcion para obtener la URL de las imagenes provenientes de GoogleDrive
+   * https://drive.google.com/uc?id=
+   * @param id String ID de la imagen
+   */
+  public getImgUrlToGoogleDrive( id: string): Observable<string>{
+    if (!id) {
+      return throwError('Error on gdrive');
+    }else{
+      const ref = 'https://drive.google.com/uc?id=' + id;
+      return of(ref);
+    }
+  }
  }
 
-export interface Project {
+ /**
+  * Modelo Para projectos
+  */
+export interface Project {  // Modelo de Proyectos
   id?: string; // ID
   title: string;  // Titulo
+  cover: string;  // Cover
   category: string; // Categoria
   description: string;  // Descripcion
-  firebaseLocation?: boolean; // Ubicacion de los archivos en Firebase
-  googleDriveLocation?: boolean; // Ubicacion de los archivos Gdrive
-  cover: string;  // Cover
-  collaborator?: { // Colaborador
-    name: string;
-    instagram: string;
-    behance: string;
-  };
-  path: string; // Direccion de ubicacion de las imagenes
-  published?: {
+  published: { // Fecha de publicacion
     nanoseconds: number;
     seconds: number;
-  }; // Fecha de ubplicacion
+  };
   // published?: firestore.FieldValue; // Fecha de ubplicacion
+  collaborators: Array<Collaborator>; // Colaboradores
+  firebaseLocation?: boolean; // Ubicacion de los archivos en Firebase
+  googleDriveLocation?: boolean; // Ubicacion de los archivos Gdrive
+  path: string; // Direccion de ubicacion de las imagenes
   imageSuffix: string;  // Sufijo de las imagenes
   imageExtention: string; // Extension de las imagenes
-  images: Array<number>;  // Arreglo que contiene las imagenes por su nombre
+  // images: Array<number>;  // Arreglo que contiene las imagenes por su nombre
+  images?: Array<ImageOfProject>; // Arreglo de imagenes
+}
+
+/**
+ * Modelo para Colaboradores
+ */
+export interface Collaborator { // Modelo de Colaboradores
+  name: string; // Nombre
+  instagram?: string;
+  behance?: string;
+}
+
+/**
+ * Modelo de Imagenes
+ */
+export interface ImageOfProject {
+  id: string;
+  title?: string;
 }
