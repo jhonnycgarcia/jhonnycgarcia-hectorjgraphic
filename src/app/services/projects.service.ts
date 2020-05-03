@@ -44,6 +44,18 @@ export class ProjectsService {
     return this.items;
   }
 
+  /**
+   * @description Funcion para retornar los ultimos proyectos publicados
+   * @param limit<number>  - Limite de registros por defecto dvuelve 5
+   * @returns items {Observable<Project>} - Arreglo de proyectos
+   */
+  public getLastProjects(limit: number = 5){
+    this.items = this.afs.collection<Project>(this.collectionName, ref => ref.orderBy('published', 'desc')
+                                                                          .limit(limit) )
+      .valueChanges({ idField: 'id' });
+    return this.items;
+  }
+
   public getProjectById(id: string): Observable<Project>{
     this.projectDoc = this.afs.doc<Project>(this.collectionName + '/' + id);
     return this.projectDoc.valueChanges();
