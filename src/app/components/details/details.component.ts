@@ -19,6 +19,7 @@ export class DetailsComponent implements OnInit {
   errorData = false;  // Mensaje de error
 
   maxHeight = '500px';  // Max-height del CSS
+  showDetails = false;  // Variable para girar el icono en el collapse de detalles
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -53,5 +54,4 @@ export class DetailsComponent implements OnInit {
       }
     });
   }
-
 }

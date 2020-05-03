@@ -18,8 +18,6 @@
 
     <div class="card-body text-center">
         <h5 class="card-title">{{item.title}}</h5>
-        <hr>
-        <p class="card-text">{{item.description}}</p>
         <!-- Mostrar boton si posee galeria de imagenes -->
         <button *ngIf="item.images.length > 0" (click)="showDetails();" type="button" class="btn btn-outline-primary btn-block" [ngClass]="{'stretched-link':!disableButton}" [disabled]="disableButton">Ver más...</button>
     </div>

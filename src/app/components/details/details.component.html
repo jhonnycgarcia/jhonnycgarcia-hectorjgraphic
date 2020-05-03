@@ -39,33 +39,56 @@
                 </div>
             </div>
             <hr>
-            <blockquote class="blockquote mt2">
-                <!-- Descripcion -->
-                <p class="mb-0 text-justify">{{item.description}}</p>
 
-                <!-- Colaboradorres -->
+            <p>
+                <!-- Botton of Description -->
+                <button class="btn btn-outline-primary btn-block align-content-center" *ngIf="item.description" data-toggle="collapse" data-target="#detailsCollapse" [ngClass]="{'active': showDetails}" [attr.aria-expanded]="showDetails" aria-controls="detailsCollapse"
+                    (click)="showDetails = !showDetails">
+                    Descripción
+                    <span class="d-inline float-right">
+                        <i class="fas fa-angle-left" [ngClass]="{'fa-rotate-270': showDetails}"></i>
+                    </span>
+                </button>
+            </p>
 
-                <div *ngIf="item.collaborators.length > 0">
-                    <!-- Si existen colaboradores -->
-                    <footer class="blockquote-footer mt-1" *ngFor="let collaborator of item.collaborators">
-                        {{collaborator.name}}
+            <!-- Collapse -->
+            <div class="collapse" id="detailsCollapse">
+                <!-- Card Body -->
+                <div class="card card-body">
 
-                        <a [href]="collaborator.instagram" class="text-reset" target="_blank">
-                            <span class="fa-stack" style="vertical-align: top;">
-                        	        <i class="far fa-circle fa-stack-2x"></i>
-                        	        <i class="fab fa-instagram fa-stack-1x"></i>
-                        	    </span>
-                        </a>
+                    <p class="text-justify">{{item.description}}</p>
 
-                        <a [href]="collaborator.behance" class="text-reset" target="_blank">
-                            <span class="fa-stack" style="vertical-align: top;">
-                        	        <i class="far fa-circle fa-stack-2x"></i>
-                        	        <i class="fab fa-behance fa-stack-1x"></i>
-                        	    </span>
-                        </a>
-                    </footer>
+                    <div *ngIf="item.collaborators.length > 0">
+                        <!-- Collaborators -->
+                        <ul class="list-inline align-middle" *ngFor="let collaborator of item.collaborators">
+                            <li class="list-inline-item align-middle">
+                                <i class="far fa-handshake fa-lg" style="color: Dodgerblue;"></i>&nbsp;
+                                <strong>- {{collaborator.name}}</strong>
+                            </li>
+                            <li class="list-inline-item align-middle" *ngIf="collaborator.instagram">
+                                <a [href]="collaborator.instagram" class="text-reset" target="_blank">
+                                    <span class="fa-stack" style="vertical-align: top;">
+                                        <i class="far fa-circle fa-stack-2x"></i>
+                        	            <i class="fab fa-instagram fa-stack-1x"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item align-middle" *ngIf="collaborator.behance">
+                                <a [href]="collaborator.behance" class="text-reset" target="_blank">
+                                    <span class="fa-stack" style="vertical-align: top;">
+                                        <i class="far fa-circle fa-stack-2x"></i>
+                        	            <i class="fab fa-behance fa-stack-1x"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /Collaborators -->
                 </div>
-            </blockquote>
+                <!-- /Card Body -->
+            </div>
+            <!-- /Collapse -->
+
         </div>
     </div>
 </div>
